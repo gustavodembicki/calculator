@@ -1,4 +1,4 @@
-export const buttonLines: any = {
+export const LINES = {
     1: [
         {
             class: "calc-button double",
