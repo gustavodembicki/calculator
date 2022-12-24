@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Lines } from "./components/Lines";
 
 import "./index.css";
 
 export function App() {
-  const [display, setDisplay] = useState(0);
-  const [buffer, setBuffer] = useState(0);
-  const [operator, setOperator] = useState("");
+  const [display, setDisplay] = useState<number>(0);
+  const [buffer, setBuffer] = useState<number>(0);
+  const [operator, setOperator] = useState<string>("");
   
-  function handleClick() {
+  function handleClick(event: ChangeEvent<HTMLButtonElement>) {
     let buttonClickedValue = event.target.value;
 
     switch (buttonClickedValue) {
@@ -38,23 +38,24 @@ export function App() {
         setOperator("");
         break;
       default:
-        handleClickNumber(buttonClickedValue);
+        handleClickNumber(Number(buttonClickedValue));
         break;
     }
   }
 
-  function handleClickNumber(number) {
+  function handleClickNumber(number: number) {
     if (display == 0) {
       setDisplay(number);
     } else {
       let numberString = number.toString();
       let displayString = display.toString();
+      let numberToShowOnDisplay = displayString.concat(numberString);
 
-      setDisplay(displayString.concat(numberString));
+      setDisplay(Number(numberToShowOnDisplay));
     }
   }
 
-  function handleMath(symbol) {
+  function handleMath(symbol: string) {
     setBuffer(display);
     setOperator(symbol);
     setDisplay(0);

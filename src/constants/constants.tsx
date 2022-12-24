@@ -1,4 +1,6 @@
-export const LINES = {
+import { LinesConstants } from "../@types/types";
+
+export const LINES: LinesConstants = {
     1: [
         {
             class: "calc-button double",
